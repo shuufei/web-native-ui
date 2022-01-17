@@ -59,7 +59,16 @@ export const Input: FC<InputProps> = (props) => {
 
   return (
     <>
-      {props.label && <label {...labelProps}>{props.label}</label>}
+      {props.label && (
+        <label
+          css={css`
+            font-size: 14px;
+          `}
+          {...labelProps}
+        >
+          {props.label}
+        </label>
+      )}
       <input
         {...inputProps}
         ref={inputRef}
@@ -68,10 +77,34 @@ export const Input: FC<InputProps> = (props) => {
           width: 100%;
         `}
       />
-      {props.description && <p {...descriptionProps}>{props.description}</p>}
-      {isInvalid && props.invalidMessage && (
-        <p {...errorMessageProps}>{props.invalidMessage}</p>
-      )}
+      <div
+        css={css`
+          font-size: 14px;
+          margin-top: 4px;
+        `}
+      >
+        {props.description &&
+          (!isInvalid || (isInvalid && !props.invalidMessage)) && (
+            <p
+              css={css`
+                color: #555555;
+              `}
+              {...descriptionProps}
+            >
+              {props.description}
+            </p>
+          )}
+        {isInvalid && props.invalidMessage && (
+          <p
+            css={css`
+              color: red;
+            `}
+            {...errorMessageProps}
+          >
+            {props.invalidMessage}
+          </p>
+        )}
+      </div>
     </>
   );
 };
