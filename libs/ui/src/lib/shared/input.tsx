@@ -5,9 +5,9 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 export type InputProps = {
   type: 'text' | 'email';
+  label: string;
   placeholder?: string;
   defaultValue?: string;
-  label?: string;
   description?: string;
   invalidMessage?: string;
   required?: boolean;
@@ -19,6 +19,10 @@ export type InputProps = {
   isInvalid?: (value: string) => boolean;
   onChange?: (value: string) => boolean;
 };
+
+const invalidStyle = css`
+  box-shadow: 0 0 0 2px rgba(225, 66, 66, 0.6);
+`;
 
 export const Input: FC<InputProps> = (props) => {
   const [value, setValue] = useState('');
@@ -75,6 +79,14 @@ export const Input: FC<InputProps> = (props) => {
         css={css`
           display: block;
           width: 100%;
+          ${isInvalid ? invalidStyle : undefined}
+          :invalid {
+            ${invalidStyle}
+          }
+          :focus {
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.6);
+            outline: none;
+          }
         `}
       />
       <div
