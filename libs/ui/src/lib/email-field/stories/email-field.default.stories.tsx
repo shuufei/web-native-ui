@@ -1,16 +1,14 @@
-import { TextField, TextFieldProps } from '../text-field';
+import { EmailField, EmailFieldProps } from '../email-field';
 import { Meta, Story } from '@storybook/react';
 export default {
-  component: TextField,
-  title: 'TextField/Email',
+  component: EmailField,
+  title: 'EmailField/Regular',
 } as Meta;
 
-const Template: Story<TextFieldProps> = (args) => <TextField {...args} />;
+const Template: Story<EmailFieldProps> = (args) => <EmailField {...args} />;
 
 export const Enabled = Template.bind({});
 Enabled.args = {
-  placeholder: 'テキストを入力してください',
-  type: 'email',
   label: 'Email',
   description: 'Emailを入力してください',
   invalidMessage: '適切な値を入力してください',

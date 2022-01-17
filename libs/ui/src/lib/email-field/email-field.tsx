@@ -1,9 +1,10 @@
 import { css } from '@emotion/react';
 import { useTextField } from '@react-aria/textfield';
 import { useDebounceCallback } from '@react-hook/debounce';
+import { pick } from 'lodash-es';
 import { FC, useEffect, useRef, useState } from 'react';
 
-export type TextFieldProps = {
+export type EmailFieldProps = {
   placeholder?: string;
   defaultValue?: string;
   label?: string;
@@ -15,11 +16,12 @@ export type TextFieldProps = {
   maxLength?: number;
   minLength?: number;
   pattern?: string;
+  multiple?: boolean;
   isInvalid?: (value: string) => boolean;
   onChange?: (value: string) => boolean;
 };
 
-export const TextField: FC<TextFieldProps> = (props) => {
+export const EmailField: FC<EmailFieldProps> = (props) => {
   const [value, setValue] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,7 +34,7 @@ export const TextField: FC<TextFieldProps> = (props) => {
   const { inputProps, labelProps, descriptionProps, errorMessageProps } =
     useTextField(
       {
-        type: 'text',
+        type: 'email',
         defaultValue: props.defaultValue,
         placeholder: props.placeholder,
         isDisabled: props.disabled,
@@ -49,6 +51,8 @@ export const TextField: FC<TextFieldProps> = (props) => {
       inputRef
     );
 
+  const remainedAttributes = pick(props, ['multiple']);
+
   useEffect(() => {
     const _isInvalid = props.isInvalid
       ? props.isInvalid(value)
@@ -61,6 +65,7 @@ export const TextField: FC<TextFieldProps> = (props) => {
       {props.label && <label {...labelProps}>{props.label}</label>}
       <input
         {...inputProps}
+        {...remainedAttributes}
         ref={inputRef}
         css={css`
           display: block;
