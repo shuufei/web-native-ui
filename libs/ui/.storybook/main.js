@@ -14,6 +14,7 @@ module.exports = {
     ...rootMain.addons,
     '@nrwl/react/plugins/storybook',
     'storybook-addon-pseudo-states',
+    '@storybook/addon-a11y',
   ],
   webpackFinal: async (config, { configType }) => {
     // apply any global webpack configs that might have been specified in .storybook/main.js
