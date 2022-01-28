@@ -10,5 +10,7 @@ const Template: Story<SearchFieldProps> = (args) => <SearchField {...args} />;
 
 export const Enabled = Template.bind({});
 Enabled.args = {
-  label: 'ページ全体を検索',
+  label: '検索',
+  description: 'ページ全体を検索',
+  invalidMessage: '検索文字列が不正です',
 };

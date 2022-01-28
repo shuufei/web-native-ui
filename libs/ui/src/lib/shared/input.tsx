@@ -17,7 +17,7 @@ export type InputProps = {
   minLength?: number;
   pattern?: string;
   isInvalid?: (value: string) => boolean;
-  onChange?: (value: string) => boolean;
+  onChange?: (value: string) => void;
 };
 
 const invalidStyle = css`
