@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 
 export default {
   component: Link,
-  title: 'Link',
+  title: 'Link/Regular',
 } as Meta;
 
 const Template: Story<PropsWithChildren<LinkProps>> = (args) => (
