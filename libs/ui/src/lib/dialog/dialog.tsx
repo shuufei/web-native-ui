@@ -21,7 +21,7 @@ export type DialogProps = {
 type ModalDialogProps = {
   title: string;
   isOpen: boolean;
-  onClose: any;
+  onClose: () => void;
   isDismissable: boolean;
 };
 
